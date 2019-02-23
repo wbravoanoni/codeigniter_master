@@ -11,7 +11,6 @@
   </head>
   <body>
 
-
     <div class="container">
     	<div class="row">
     		<div class="col-lg-6 offset-lg-3">
@@ -24,17 +23,48 @@
 				'style' => 'color: #000;'
 				);
 
-				$data = array(
-
-				'name'  => 'email',
+				$data1 = array(
+				'name'  => 'nombre',
 				'id'    => 'hiddenemail',
-				'value' => 'john@example.com',
+				'placeholder' => 'Winston',
+                'value' => "{$nombre}",
 				'class' => 'form-control'
 				);
 
+                $data2 = array(
+                'name'  => 'apellido',
+                'id'    => 'hiddenemail',
+                'value' => "{$apellido}",
+                'placeholder' => 'Bravo',
+                'class' => 'form-control'
+                );
+
+                $data3 = array(
+                'name'  => 'edad',
+                'id'    => 'hiddenemail',
+                'value' => "{$edad}",
+                'placeholder' => '27',
+                'class' => 'form-control'
+                );
+
+                $data4 = array(
+                'name'  => 'edad',
+                'id'    => 'hiddenemail',
+                'class' => 'btn btn-primary mt-3 text-center d-flex',
+                'style' => 'margin:0 auto'
+                );                   
+
 
 				echo form_label('Nombre', 'hiddenemail', $attributes);
-				echo form_input($data);
+				echo form_input($data1);
+
+                echo form_label('Apellido', 'hiddenemail', $attributes);
+                echo form_input($data2);
+
+                echo form_label('Edad', 'hiddenemail', $attributes);
+                echo form_input($data3);
+
+                echo form_submit('mysubmit', 'Submit Post!',$data4);
 
     			?>
 
