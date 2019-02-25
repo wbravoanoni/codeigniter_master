@@ -39,4 +39,11 @@ class persona_model extends CI_Model {
 		$this->db->update($this->table);
 
 		}
+
+		function borrar($persona_id){
+
+		$this->db->where($this->table_id, $persona_id);
+		$this->db->delete($this->table);
+		redirect('/persona/listado');
+		}
 }

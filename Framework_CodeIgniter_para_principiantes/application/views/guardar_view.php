@@ -10,7 +10,7 @@
     <title>Guardar Persona</title>
   </head>
   <body>
-
+<?php echo validation_errors();?>
     <div class="container">
     	<div class="row">
     		<div class="col-lg-6 offset-lg-3">
@@ -25,7 +25,7 @@
 
 				$data1 = array(
 				'name'  => 'nombre',
-				'id'    => 'hiddenemail',
+				'id'    => 'nombre',
 				'placeholder' => 'Winston',
                 'value' => "{$nombre}",
 				'class' => 'form-control'
@@ -33,7 +33,7 @@
 
                 $data2 = array(
                 'name'  => 'apellido',
-                'id'    => 'hiddenemail',
+                'id'    => 'apellido',
                 'value' => "{$apellido}",
                 'placeholder' => 'Bravo',
                 'class' => 'form-control'
@@ -41,7 +41,7 @@
 
                 $data3 = array(
                 'name'  => 'edad',
-                'id'    => 'hiddenemail',
+                'id'    => 'edad',
                 'value' => "{$edad}",
                 'placeholder' => '27',
                 'class' => 'form-control'

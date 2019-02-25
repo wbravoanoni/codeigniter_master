@@ -8,6 +8,7 @@ class Persona extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->model('persona_model');
 		$this->load->database();
+		$this->load->library('form_validation');
 	}
 
 	/**
@@ -40,9 +41,16 @@ class Persona extends CI_Controller {
 
 		public function listado(){
 
+		$data["listado"] = $this->persona_model->findAll();
+		$this->load->view("listado.php",$data);
 		}
 
+
 		public function guardar($persona_id = null){
+
+			$this->form_validation->set_rules('nombre', 'Nombre', 'required|min_length[3]');
+			$this->form_validation->set_rules('apellido', 'Apellido', 'required');
+			$this->form_validation->set_rules('edad', 'Edad', 'required');
 			
 			$data['nombre']     = '';
 			$data['apellido']   = '';
@@ -59,14 +67,14 @@ class Persona extends CI_Controller {
 
 			if($this->input->server("REQUEST_METHOD") == "POST"){
 
-				$nombre   = $this->input->post("nombre");
-				$apellido = $this->input->post("apellido");
-				$edad     = $this->input->post("edad");
-
-
-if(!empty($nombre) && !empty($apellido)&& !empty($edad)){
+				if($this->form_validation->run()){
 
 		//echo "POST";
+
+			$nombre   = $this->input->post("nombre");
+			$apellido = $this->input->post("apellido");
+			$edad     = $this->input->post("edad");				
+
 		$data["nombre"]   = $nombre;	
 		$data["apellido"] = $apellido;	
 		$data["edad"]     = $edad ;	
@@ -81,13 +89,7 @@ if(!empty($nombre) && !empty($apellido)&& !empty($edad)){
 			$this->persona_model->insert($data);
 			}	
 
-
-
-}else{
-	echo "campos vacio";
-	exit;
-}
-
+				}
 
 
 
@@ -95,7 +97,7 @@ if(!empty($nombre) && !empty($apellido)&& !empty($edad)){
 				$this->load->view('guardar_view',$data);
 	}
 
-		public function borrar(){
-
+		public function borrar($id){
+			$this->persona_model->borrar($id);
 		}
 }
